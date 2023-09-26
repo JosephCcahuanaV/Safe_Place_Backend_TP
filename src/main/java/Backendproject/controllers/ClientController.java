@@ -17,7 +17,7 @@ public class ClientController {
     @Autowired
     ClientService clientService;
 
-    //http://localhost:8080/api/clients
+    //NUEVA RUTA : http://localhost:8080/api/clients
 
     @GetMapping("/clients")
     public ResponseEntity<List<Client>> getAllClients() {
