@@ -2,7 +2,6 @@ package Backendproject.serviceImpl;
 
 import Backendproject.entities.Client;
 import Backendproject.repositories.ClientRepository;
-import Backendproject.repositories.ContractRepository;
 import Backendproject.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

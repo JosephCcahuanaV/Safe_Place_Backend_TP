@@ -2,7 +2,6 @@ package Backendproject.serviceImpl;
 
 
 import Backendproject.entities.Rol;
-import Backendproject.repositories.ContractRepository;
 import Backendproject.repositories.RolRepository;
 import Backendproject.services.RolService;
 import org.springframework.beans.factory.annotation.Autowired;

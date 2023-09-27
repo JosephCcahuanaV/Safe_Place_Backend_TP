@@ -1,7 +1,6 @@
 package Backendproject.serviceImpl;
 
 import Backendproject.entities.Local;
-import Backendproject.repositories.ContractRepository;
 import Backendproject.repositories.LocalRepository;
 import Backendproject.services.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
