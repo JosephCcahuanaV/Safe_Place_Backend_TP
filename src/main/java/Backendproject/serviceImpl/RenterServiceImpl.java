@@ -1,7 +1,6 @@
 package Backendproject.serviceImpl;
 
 import Backendproject.entities.Renter;
-import Backendproject.repositories.ContractRepository;
 import Backendproject.repositories.RenterRepository;
 import Backendproject.services.RenterService;
 import org.springframework.beans.factory.annotation.Autowired;

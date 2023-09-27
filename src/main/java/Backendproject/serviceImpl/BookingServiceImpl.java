@@ -2,7 +2,6 @@ package Backendproject.serviceImpl;
 
 import Backendproject.entities.Booking;
 import Backendproject.repositories.BookingRepository;
-import Backendproject.repositories.ContractRepository;
 import Backendproject.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

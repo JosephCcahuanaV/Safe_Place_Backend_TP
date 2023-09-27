@@ -1,7 +1,6 @@
 package Backendproject.serviceImpl;
 
 import Backendproject.entities.User;
-import Backendproject.repositories.ContractRepository;
 import Backendproject.repositories.UserRepository;
 import Backendproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

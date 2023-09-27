@@ -1,17 +1,17 @@
 package Backendproject.entities;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name ="renters")
+@Table(name ="renters")
 public class Renter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

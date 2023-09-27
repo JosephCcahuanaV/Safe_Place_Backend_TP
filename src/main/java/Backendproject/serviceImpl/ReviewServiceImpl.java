@@ -2,7 +2,6 @@ package Backendproject.serviceImpl;
 
 
 import Backendproject.entities.Review;
-import Backendproject.repositories.ContractRepository;
 import Backendproject.repositories.ReviewRepository;
 import Backendproject.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;

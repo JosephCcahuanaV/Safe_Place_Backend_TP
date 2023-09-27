@@ -1,7 +1,6 @@
 package Backendproject.serviceImpl;
 
 import Backendproject.entities.Payment;
-import Backendproject.repositories.ContractRepository;
 import Backendproject.repositories.PaymentRepository;
 import Backendproject.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
