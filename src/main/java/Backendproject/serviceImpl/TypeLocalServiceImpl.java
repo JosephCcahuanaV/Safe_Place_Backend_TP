@@ -1,5 +1,6 @@
 package Backendproject.serviceImpl;
 
+import Backendproject.entities.Rol;
 import Backendproject.entities.TypeLocal;
 import Backendproject.repositories.TypeLocalRepository;
 import Backendproject.services.TypeLocalService;
@@ -12,20 +13,5 @@ import java.util.List;
 
 public class TypeLocalServiceImpl implements TypeLocalService {
 
-    @Autowired
-    TypeLocalRepository typeLocalRepository;
-    @Override
-    public List<TypeLocal> listAll() {
-        return null;
-    }
 
-    @Override
-    public TypeLocal save(TypeLocal typeLocal) {
-        return null;
-    }
-
-    @Override
-    public void delete(Long id) {
-
-    }
 }
