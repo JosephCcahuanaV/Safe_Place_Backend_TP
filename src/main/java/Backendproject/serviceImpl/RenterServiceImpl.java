@@ -1,5 +1,7 @@
 package Backendproject.serviceImpl;
 
+import Backendproject.dtos.ClientDTO;
+import Backendproject.dtos.RenterDTO;
 import Backendproject.entities.Renter;
 import Backendproject.exceptions.IncompleteDataException;
 import Backendproject.exceptions.KeyRepeatedDataException;
@@ -9,6 +11,7 @@ import Backendproject.services.RenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,7 +32,6 @@ public class RenterServiceImpl implements RenterService {
         if (renter.getName()==null || renter.getName().isEmpty()) {
             throw new IncompleteDataException("name can not be null or empty");
         }
-
         return renterRepository.save(renter);
     }
 
@@ -48,6 +50,25 @@ public class RenterServiceImpl implements RenterService {
 
 
         return renterFound;
+    }
+
+    /*@Override
+    public List<Object[]> countRentersByNationality() {
+        return renterRepository.countRentersByNationality();
+    }*/
+
+    public List<RenterDTO> countRentersByNationality2() {
+        List<Object[]> results = renterRepository.countRentersByNationality();
+        List<RenterDTO> renterDTOS = new ArrayList<>();
+
+        for (Object[] result : results) {
+            String nacionality = (String) result[0];
+            Long count = (Long) result[1];
+            RenterDTO renterDTO = new RenterDTO(nacionality, count);
+            renterDTOS.add(renterDTO);
+        }
+
+        return renterDTOS;
     }
 
 

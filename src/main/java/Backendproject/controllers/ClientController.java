@@ -1,5 +1,6 @@
 package Backendproject.controllers;
 
+import Backendproject.dtos.ClientDTO;
 import Backendproject.dtos.CountClientDTO;
 import Backendproject.entities.Client;
 import Backendproject.services.ClientService;
@@ -67,12 +68,12 @@ public class ClientController {
         return new ResponseEntity<Client>(newClient, HttpStatus.OK);
     }
 
-
-    @GetMapping("/contarPorNacionalidad")
-    public ResponseEntity<List<CountClientDTO>> countClientsByNationality() {
-        List<CountClientDTO> counts = clientService.countClientsByNationality();
-        return new ResponseEntity<>(counts, HttpStatus.OK);
+    @GetMapping("/ruc")
+    public ResponseEntity<List<ClientDTO>> countClientsByRuc() {
+        List<ClientDTO> result = clientService.countClientsByRuc();
+        return ResponseEntity.ok(result);
     }
+
 
 
 }
