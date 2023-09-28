@@ -1,5 +1,6 @@
 package Backendproject.serviceImpl;
 
+import Backendproject.entities.Client;
 import Backendproject.entities.Payment;
 import Backendproject.repositories.PaymentRepository;
 import Backendproject.services.PaymentService;
@@ -15,16 +16,28 @@ public class PaymentServiceImpl implements PaymentService {
     PaymentRepository paymentRepository;
     @Override
     public List<Payment> listAll() {
-        return null;
+        List<Payment> payments = paymentRepository.findAll();
+        return payments;
     }
 
     @Override
     public Payment save(Payment payment) {
-        return null;
+        return paymentRepository.save(payment);
     }
 
     @Override
     public void delete(Long id) {
+        Payment payment = findById(id);
+        paymentRepository.delete(payment);
+
 
     }
+
+    @Override
+    public Payment findById(Long id) {
+        Payment paymentFound = paymentRepository.findById(id).orElse(null);
+
+        return paymentFound;
+    }
 }
+

@@ -10,5 +10,8 @@ public interface PaymentService {
     public Payment save(Payment payment);
     public void delete(Long id);
 
+    public Payment findById(Long id);
+
 
 }
+
