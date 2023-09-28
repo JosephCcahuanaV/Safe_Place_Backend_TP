@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class LocalDTO {
 
-
+    private Long id;
     private String name;
-    private double price;
+    private Double price;
 }

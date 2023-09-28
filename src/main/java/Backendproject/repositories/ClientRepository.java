@@ -1,5 +1,6 @@
 package Backendproject.repositories;
 
+import Backendproject.dtos.ClientDTO;
 import Backendproject.entities.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,4 +15,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Query(value = "SELECT c.nationality, COUNT(c.id) as cantidad_clientes FROM clients c GROUP BY c.nationality", nativeQuery = true)
     List<Object[]> countClientsByNationality();
+
+    @Query("SELECT c.ruc as ruc, COUNT(c) as count FROM Client c GROUP BY c.ruc")
+    List<Object[]> countClientsByRuc();
 }

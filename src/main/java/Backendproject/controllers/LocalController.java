@@ -2,10 +2,8 @@ package Backendproject.controllers;
 
 import Backendproject.dtos.CountLocalDTO;
 import Backendproject.dtos.LocalDTO;
-import Backendproject.entities.Client;
-import Backendproject.entities.Contract;
+import Backendproject.dtos.LocalWithPriceIncludingIgvDto;
 import Backendproject.entities.Local;
-import Backendproject.services.ContractService;
 import Backendproject.services.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +32,7 @@ public class LocalController {
         Local newLocal = localService.save(local);
         return new ResponseEntity<Local>(newLocal, HttpStatus.CREATED);
     }
-    @DeleteMapping("/locals/{id}")
+    @DeleteMapping("/locals/delete/{id}")
     public ResponseEntity<HttpStatus> deleteLocal(@PathVariable("id") Long id) {
         localService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -74,27 +72,27 @@ public class LocalController {
         return new ResponseEntity<>(countLocalDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/expensive")
-    public ResponseEntity<LocalDTO> getMostExpensiveLocal() {
-        LocalDTO mostExpensiveLocal = localService.findMostExpensiveLocal();
-
-        if (mostExpensiveLocal != null) {
-            return new ResponseEntity<>(mostExpensiveLocal, HttpStatus.OK);
+    @GetMapping("/highprice")
+    public ResponseEntity<LocalDTO> getLocalWithHighestPrice() {
+        LocalDTO dto = localService.findLocalWithHighestPrice();
+        if (dto != null) {
+            return ResponseEntity.ok(dto);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
     }
 
-    @GetMapping("/price/{id}")
-    public ResponseEntity<Double> getPriceOfWeeklyRental(@PathVariable Long id) {
-        Double price = localService.findPriceOfWeeklyRentalById(id);
-
-        if (price != null) {
-            return new ResponseEntity<>(price, HttpStatus.OK);
+    @GetMapping("/igv/{id}")
+    public ResponseEntity<LocalWithPriceIncludingIgvDto> getLocalWithPriceIncludingIgv(@PathVariable Long id) {
+        LocalWithPriceIncludingIgvDto dto = localService.findLocalByIdWithPriceIncludingIgv(id);
+        if (dto != null) {
+            return ResponseEntity.ok(dto);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
     }
+
+
 }
 
 

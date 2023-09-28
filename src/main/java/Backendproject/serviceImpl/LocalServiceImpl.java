@@ -2,6 +2,7 @@ package Backendproject.serviceImpl;
 
 import Backendproject.dtos.CountLocalDTO;
 import Backendproject.dtos.LocalDTO;
+import Backendproject.dtos.LocalWithPriceIncludingIgvDto;
 import Backendproject.entities.Client;
 import Backendproject.entities.Local;
 import Backendproject.entities.Payment;
@@ -13,7 +14,9 @@ import Backendproject.services.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class LocalServiceImpl implements LocalService {
@@ -57,18 +60,33 @@ public class LocalServiceImpl implements LocalService {
         return countLocalDTO;
     }
 
-    public LocalDTO findMostExpensiveLocal() {
-        Local mostExpensiveLocal = localRepository.findMostExpensiveLocal();
-        if (mostExpensiveLocal != null) {
-            return new LocalDTO(mostExpensiveLocal.getName(), mostExpensiveLocal.getPrice());
+    @Override
+    public LocalDTO findLocalWithHighestPrice() {
+        Local local = localRepository.findLocalWithHighestPrice();
+        if (local != null) {
+            return new LocalDTO(local.getId(), local.getName(), local.getPrice());
         } else {
-            return null; // Puedes manejar esto como desees (lanzar una excepción, por ejemplo).
+            // Manejo de errores o retorno apropiado en caso de que no haya resultados
+            return null;
         }
     }
+
     @Override
-    public Double findPriceOfWeeklyRentalById(Long id) {
-        return localRepository.findPriceOfWeeklyRentalById(id);
+    public LocalWithPriceIncludingIgvDto findLocalByIdWithPriceIncludingIgv(Long id) {
+        Map<String, Object> resultMap = localRepository.findLocalByIdWithPriceIncludingIgv(id);
+        if (resultMap != null) {
+            BigInteger localId = (BigInteger) resultMap.get("id");
+            String localName = (String) resultMap.get("name");
+            Double priceWithIgv = ((Number) resultMap.get("priceWithIgv")).doubleValue();
+
+            return new LocalWithPriceIncludingIgvDto(localId.longValue(), localName, priceWithIgv);
+        } else {
+            // Manejo de errores o retorno apropiado en caso de que no se encuentre el local
+            return null;
+        }
     }
+
+
 
 
 }

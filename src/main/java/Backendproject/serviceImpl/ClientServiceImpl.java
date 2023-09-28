@@ -1,5 +1,6 @@
 package Backendproject.serviceImpl;
 
+import Backendproject.dtos.ClientDTO;
 import Backendproject.dtos.CountClientDTO;
 import Backendproject.entities.Client;
 import Backendproject.exceptions.IncompleteDataException;
@@ -10,6 +11,7 @@ import Backendproject.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,5 +65,19 @@ public class ClientServiceImpl implements ClientService {
         return results.stream()
                 .map(result -> new CountClientDTO((String) result[0], (Long) result[1]))
                 .collect(Collectors.toList());
+    }
+
+    public List<ClientDTO> countClientsByRuc() {
+        List<Object[]> results = clientRepository.countClientsByRuc();
+        List<ClientDTO> clientDTOs = new ArrayList<>();
+
+        for (Object[] result : results) {
+            String ruc = (String) result[0];
+            Long count = (Long) result[1];
+            ClientDTO clientDTO = new ClientDTO(ruc, count);
+            clientDTOs.add(clientDTO);
+        }
+
+        return clientDTOs;
     }
 }

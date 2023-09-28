@@ -1,6 +1,5 @@
 package Backendproject.security;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -97,10 +96,13 @@ public class SecurityConfiguration {
                 .antMatchers("/api/renters/update/{id}").hasAnyRole("CLIENT","ADMIN")
                 .antMatchers("/api/renters/{id}").hasAnyRole("CLIENT","ADMIN")
 
+                //Querys
 
-
-
-
+                .antMatchers("/api/ruc").hasRole("ADMIN")
+                .antMatchers("/api/countAllLocals").hasRole("ADMIN")
+                .antMatchers("/api/highprice").hasRole("ADMIN")
+                .antMatchers("/api/igv/{id}").hasRole("ADMIN")
+                .antMatchers("/api/nationality").hasRole("ADMIN")
 
                 //.antMatchers("/api/clients/{id}").hasAnyRole("CLIENT")
                 .anyRequest().authenticated()
