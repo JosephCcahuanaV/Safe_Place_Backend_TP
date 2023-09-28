@@ -1,5 +1,6 @@
 package Backendproject.serviceImpl;
 
+import Backendproject.entities.TypeLocal;
 import Backendproject.entities.User;
 import Backendproject.repositories.UserRepository;
 import Backendproject.services.UserService;
@@ -12,20 +13,6 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserRepository userRepository;
-    @Override
-    public List<User> listAll() {
-        return null;
-    }
 
-    @Override
-    public User save(User user) {
-        return null;
-    }
 
-    @Override
-    public void delete(Long id) {
-
-    }
 }

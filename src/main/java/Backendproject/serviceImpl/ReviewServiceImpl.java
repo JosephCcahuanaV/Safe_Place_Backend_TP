@@ -1,6 +1,7 @@
 package Backendproject.serviceImpl;
 
 
+import Backendproject.entities.Renter;
 import Backendproject.entities.Review;
 import Backendproject.repositories.ReviewRepository;
 import Backendproject.services.ReviewService;
@@ -17,16 +18,25 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<Review> listAll() {
-        return null;
+
+        List<Review> reviews=reviewRepository.findAll();
+        return reviews;
     }
 
     @Override
     public Review save(Review review) {
-        return null;
+        return reviewRepository.save(review);
     }
 
     @Override
     public void delete(Long id) {
+        Review review = findById(id);
+        reviewRepository.delete(review);
+    }
 
+    @Override
+    public Review findById(Long id) {
+        Review reviewFound = reviewRepository.findById(id).orElse(null);
+        return reviewFound;
     }
 }

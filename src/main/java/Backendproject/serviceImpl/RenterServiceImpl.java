@@ -15,16 +15,28 @@ public class RenterServiceImpl implements RenterService {
 
     @Override
     public List<Renter> listAll() {
-        return null;
+
+        List<Renter> renters=renterRepository.findAll();
+        return renters;
     }
 
     @Override
     public Renter save(Renter renter) {
-        return null;
+
+        return renterRepository.save(renter);
     }
 
     @Override
-    public void delete(Long id) {
-
+    public void delete(Long id){
+        Renter renter=findById(id);
+        renterRepository.delete(renter);
     }
+
+    @Override
+    public Renter findById(Long id) {
+        Renter renterFound=renterRepository.findById(id).orElse(null);
+        return renterFound;
+    }
+
+
 }
