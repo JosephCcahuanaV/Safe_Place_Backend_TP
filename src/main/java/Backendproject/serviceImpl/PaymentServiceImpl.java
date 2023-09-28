@@ -2,6 +2,7 @@ package Backendproject.serviceImpl;
 
 import Backendproject.entities.Client;
 import Backendproject.entities.Payment;
+import Backendproject.exceptions.ResourceNotFoundException;
 import Backendproject.repositories.PaymentRepository;
 import Backendproject.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment findById(Long id) {
         Payment paymentFound = paymentRepository.findById(id).orElse(null);
+        if (paymentFound == null) {
+            throw new ResourceNotFoundException("There are no object with the id: "+String.valueOf(id));
+        }
 
         return paymentFound;
     }

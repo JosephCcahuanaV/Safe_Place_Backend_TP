@@ -1,8 +1,7 @@
 package Backendproject.controllers;
 
-import Backendproject.entities.TypeLocal;
+
 import Backendproject.entities.User;
-import Backendproject.services.TypeLocalService;
 import Backendproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,13 +30,16 @@ public class UserController {
         return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/users/delete/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") Long id) {
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
 }
+
+
+
+
 
 

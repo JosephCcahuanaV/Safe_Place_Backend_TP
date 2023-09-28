@@ -28,7 +28,7 @@ public class BookingController {
         Booking newBooking = bookingService.save(booking);
         return new ResponseEntity<Booking>(newBooking, HttpStatus.CREATED);
     }
-    @DeleteMapping("/bookings/{id}")
+    @DeleteMapping("/bookings/delete/{id}")
     public ResponseEntity<HttpStatus> deleteReview(@PathVariable("id") Long id) {
         bookingService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

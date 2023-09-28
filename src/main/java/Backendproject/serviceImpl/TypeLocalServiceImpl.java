@@ -2,6 +2,9 @@ package Backendproject.serviceImpl;
 
 import Backendproject.entities.Rol;
 import Backendproject.entities.TypeLocal;
+import Backendproject.exceptions.IncompleteDataException;
+import Backendproject.exceptions.KeyRepeatedDataException;
+import Backendproject.exceptions.ResourceNotFoundException;
 import Backendproject.repositories.TypeLocalRepository;
 import Backendproject.services.TypeLocalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,11 @@ public class TypeLocalServiceImpl implements TypeLocalService {
 
     @Override
     public TypeLocal save(TypeLocal typeLocal) {
+
+        if (typeLocal.getName()==null || typeLocal.getName().isEmpty()) {
+            throw new IncompleteDataException("name can not be null or empty");
+        }
+
         return typeLocalRepository.save(typeLocal);
     }
 
@@ -35,6 +43,10 @@ public class TypeLocalServiceImpl implements TypeLocalService {
     @Override
     public TypeLocal findById(Long id){
         TypeLocal typeLocalFound = typeLocalRepository.findById(id).orElse(null);
+        if (typeLocalFound == null) {
+            throw new ResourceNotFoundException("There are no object with the id: "+String.valueOf(id));
+        }
+
         return typeLocalFound;
     }
 

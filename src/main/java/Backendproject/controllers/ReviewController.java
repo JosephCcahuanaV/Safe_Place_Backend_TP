@@ -1,5 +1,6 @@
 package Backendproject.controllers;
 
+import Backendproject.entities.Client;
 import Backendproject.entities.Renter;
 import Backendproject.entities.Review;
 import Backendproject.services.RenterService;
@@ -30,10 +31,16 @@ public class ReviewController {
         Review newReview = reviewService.save(review);
         return new ResponseEntity<Review>(newReview, HttpStatus.CREATED);
     }
-    @DeleteMapping("/reviews/{id}")
+    @DeleteMapping("/reviews/delete/{id}")
     public ResponseEntity<HttpStatus> deleteReview(@PathVariable("id") Long id) {
         reviewService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/reviews/{id}")
+    public ResponseEntity<Review> getAReviewById(@PathVariable("id") Long id) {
+        Review review = reviewService.findById(id);
+        return new ResponseEntity<Review>(review, HttpStatus.OK);
     }
 
 }

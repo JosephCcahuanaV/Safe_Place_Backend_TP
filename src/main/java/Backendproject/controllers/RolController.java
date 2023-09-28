@@ -32,7 +32,7 @@ public class RolController {
         return new ResponseEntity<Rol>(newRol, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/roles/{id}")
+    @DeleteMapping("/roles/delete/{id}")
     public ResponseEntity<HttpStatus> deleteRol(@PathVariable("id") Long id) {
         rolService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

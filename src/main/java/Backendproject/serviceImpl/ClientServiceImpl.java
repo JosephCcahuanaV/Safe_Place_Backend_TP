@@ -1,6 +1,9 @@
 package Backendproject.serviceImpl;
 
 import Backendproject.entities.Client;
+import Backendproject.exceptions.IncompleteDataException;
+import Backendproject.exceptions.KeyRepeatedDataException;
+import Backendproject.exceptions.ResourceNotFoundException;
 import Backendproject.repositories.ClientRepository;
 import Backendproject.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,11 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client save(Client client) {
+
+        if (client.getName()==null || client.getName().isEmpty()) {
+            throw new IncompleteDataException("name can not be null or empty");
+        }
+
         return clientRepository.save(client);
     }
 
@@ -35,6 +43,9 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client findById(Long id) {
         Client clientFound = clientRepository.findById(id).orElse(null);
+        if (clientFound == null) {
+            throw new ResourceNotFoundException("There are no object with the id: "+String.valueOf(id));
+        }
 
         return clientFound;
     }

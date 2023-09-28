@@ -51,8 +51,55 @@ public class SecurityConfiguration {
 
         http.authorizeHttpRequests( (auth) ->auth
                 .antMatchers(AUTH_WHITELIST).permitAll()
+
+                //CLIENT
                 .antMatchers("/api/clients").hasRole("ADMIN")
-                .antMatchers("/api/clients/{id}").hasAnyRole("CLIENT")
+                .antMatchers("/api/clients/create").hasAnyRole("CLIENT","ADMIN")
+                .antMatchers("/api/clients/delete/{id}").hasRole("ADMIN")
+                .antMatchers("/api/clients/create").hasAnyRole("CLIENT","ADMIN")
+                .antMatchers("/api/clients/update/{id}").hasAnyRole("CLIENT","ADMIN")
+                .antMatchers("/api/clients/{id}").hasAnyRole("CLIENT","ADMIN")
+
+
+                //CONTRACT
+                .antMatchers("/api/contracts").hasRole("ADMIN")
+                .antMatchers("/api/contracts/create").hasAnyRole("RENDER","ADMIN","CLIENT")
+                .antMatchers("/api/contracts/{id}").hasAnyRole("RENDER","ADMIN","CLIENT")
+                .antMatchers("/api/contracts/delete/{id}").hasRole("ADMIN")
+
+                //BOOKING
+                .antMatchers("/api/bookings").hasAnyRole("CLIENT","RENDER","ADMIN")
+                .antMatchers("/api/bookings/create").hasAnyRole("CLIENT","RENDER","ADMIN")
+                .antMatchers("/api/bookings/{id}").hasAnyRole("CLIENT","RENDER","ADMIN")
+                .antMatchers("/api/bookings/delete/{id}").hasRole("ADMIN")
+
+
+                //LOCAL
+                .antMatchers("/api/locals").hasAnyRole("RENDER","ADMIN")
+                .antMatchers("/api/locals/create").hasAnyRole("RENDER","ADMIN")
+                .antMatchers("/api/locals/{id}").hasAnyRole("RENDER","ADMIN")
+                .antMatchers("/api/locals/update/{id}").hasAnyRole("RENDER","ADMIN")
+                .antMatchers("/api/locals/delete/{id}").hasRole("ADMIN")
+
+                //REVIEW
+
+                .antMatchers("/api/reviews").hasAnyRole("CLIENT","ADMIN")
+                .antMatchers("/api/reviews/create").hasAnyRole("RENDER","ADMIN")
+                .antMatchers("/api/reviews/delete/{id}").hasRole("ADMIN")
+                .antMatchers("/api/reviews/{id}").hasAnyRole("CLIENT","ADMIN")
+
+                //RENTER
+
+                .antMatchers("/api/renters").hasRole("ADMIN")
+                .antMatchers("/api/renters/create").hasAnyRole("CLIENT","ADMIN")
+                .antMatchers("/api/renters/delete/{id}").hasRole("ADMIN")
+                .antMatchers("/api/renters/create").hasAnyRole("CLIENT","ADMIN")
+                .antMatchers("/api/renters/update/{id}").hasAnyRole("CLIENT","ADMIN")
+                .antMatchers("/api/renters/{id}").hasAnyRole("CLIENT","ADMIN")
+
+
+
+                //.antMatchers("/api/clients/{id}").hasAnyRole("CLIENT")
                 .anyRequest().authenticated()
         );
 
