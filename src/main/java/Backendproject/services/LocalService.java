@@ -2,7 +2,7 @@ package Backendproject.services;
 
 
 import Backendproject.entities.Local;
-
+import Backendproject.dtos.CountLocalDTO;
 import java.util.List;
 
 public interface LocalService {
@@ -12,6 +12,8 @@ public interface LocalService {
     public void delete(Long id);
 
     public Local findById(Long id);
+    //CountLocalDTO countAllLocals();
+
 
 
 }

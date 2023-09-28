@@ -1,5 +1,6 @@
 package Backendproject.serviceImpl;
 
+import Backendproject.dtos.CountLocalDTO;
 import Backendproject.entities.Client;
 import Backendproject.entities.Local;
 import Backendproject.entities.Payment;
@@ -47,5 +48,6 @@ public class LocalServiceImpl implements LocalService {
         }
         return localFound;
     }
+
 }
 

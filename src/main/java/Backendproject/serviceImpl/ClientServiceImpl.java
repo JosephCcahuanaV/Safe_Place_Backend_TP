@@ -49,4 +49,9 @@ public class ClientServiceImpl implements ClientService {
 
         return clientFound;
     }
+
+    @Override
+    public Client findOldestClient() {
+        return clientRepository.findOldestClient();
+    }
 }

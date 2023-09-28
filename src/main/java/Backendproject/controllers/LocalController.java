@@ -1,5 +1,6 @@
 package Backendproject.controllers;
 
+import Backendproject.dtos.CountLocalDTO;
 import Backendproject.entities.Client;
 import Backendproject.entities.Contract;
 import Backendproject.entities.Local;
@@ -66,7 +67,11 @@ public class LocalController {
         Local newLocal = localService.save(fountlocal);
         return new ResponseEntity<Local>(newLocal, HttpStatus.OK);
     }
-
+    @GetMapping("/countAllLocals")
+    public ResponseEntity<CountLocalDTO> countAllLocals() {
+        CountLocalDTO countLocalDTO = localService.countAllLocals();
+        return new ResponseEntity<>(countLocalDTO, HttpStatus.OK);
+    }
 }
 
 
