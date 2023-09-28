@@ -11,5 +11,8 @@ public interface LocalService {
     public Local save(Local local);
     public void delete(Long id);
 
+    public Local findById(Long id);
+
 
 }
+

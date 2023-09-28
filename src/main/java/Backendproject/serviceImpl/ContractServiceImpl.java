@@ -1,5 +1,6 @@
 package Backendproject.serviceImpl;
 
+import Backendproject.entities.Client;
 import Backendproject.entities.Contract;
 import Backendproject.repositories.ContractRepository;
 import Backendproject.services.ContractService;
@@ -15,21 +16,24 @@ public class ContractServiceImpl implements ContractService {
     ContractRepository contractRepository;
     @Override
     public List<Contract> listAll() {
-        return null;
+        List<Contract> contracts = contractRepository.findAll();
+        return contracts;
     }
 
     @Override
     public Contract save(Contract contract) {
-        return null;
+        return contractRepository.save(contract);
     }
 
     @Override
     public void delete(Long id) {
-
+        Contract contract = findById(id);
+        contractRepository.delete(contract);
     }
 
     @Override
     public Contract findById(Long id) {
-        return null;
+        Contract contractFound = contractRepository.findById(id).orElse(null);
+        return contractFound;
     }
 }

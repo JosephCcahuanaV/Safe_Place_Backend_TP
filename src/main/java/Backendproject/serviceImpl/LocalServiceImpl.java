@@ -1,6 +1,8 @@
 package Backendproject.serviceImpl;
 
+import Backendproject.entities.Client;
 import Backendproject.entities.Local;
+import Backendproject.entities.Payment;
 import Backendproject.repositories.LocalRepository;
 import Backendproject.services.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +17,24 @@ public class LocalServiceImpl implements LocalService {
     LocalRepository localRepository;
     @Override
     public List<Local> listAll() {
-        return null;
+        List<Local> locals = localRepository.findAll();
+        return locals;
     }
 
     @Override
     public Local save(Local local) {
-        return null;
+        return localRepository.save(local);
     }
 
     @Override
     public void delete(Long id) {
-
+        Local local = findById(id);
+        localRepository.delete(local);
+    }
+    @Override
+    public Local findById(Long id) {
+        Local localFound = localRepository.findById(id).orElse(null);
+        return localFound;
     }
 }
+
