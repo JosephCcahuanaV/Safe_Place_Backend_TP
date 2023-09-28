@@ -99,6 +99,9 @@ public class SecurityConfiguration {
 
 
 
+
+
+
                 //.antMatchers("/api/clients/{id}").hasAnyRole("CLIENT")
                 .anyRequest().authenticated()
         );

@@ -1,6 +1,7 @@
 package Backendproject.controllers;
 
 import Backendproject.dtos.CountLocalDTO;
+import Backendproject.dtos.LocalDTO;
 import Backendproject.entities.Client;
 import Backendproject.entities.Contract;
 import Backendproject.entities.Local;
@@ -56,8 +57,8 @@ public class LocalController {
         if (local.getCapacity()!=null) {
             fountlocal.setCapacity(local.getCapacity());
         }
-        if (local.getPayxday()!=null) {
-            fountlocal.setPayxday(local.getPayxday());
+        if (local.getPrice()!=null) {
+            fountlocal.setPrice(local.getPrice());
         }
 
         if (local.getIs_active()!=null) {
@@ -71,6 +72,28 @@ public class LocalController {
     public ResponseEntity<CountLocalDTO> countAllLocals() {
         CountLocalDTO countLocalDTO = localService.countAllLocals();
         return new ResponseEntity<>(countLocalDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/expensive")
+    public ResponseEntity<LocalDTO> getMostExpensiveLocal() {
+        LocalDTO mostExpensiveLocal = localService.findMostExpensiveLocal();
+
+        if (mostExpensiveLocal != null) {
+            return new ResponseEntity<>(mostExpensiveLocal, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/price/{id}")
+    public ResponseEntity<Double> getPriceOfWeeklyRental(@PathVariable Long id) {
+        Double price = localService.findPriceOfWeeklyRentalById(id);
+
+        if (price != null) {
+            return new ResponseEntity<>(price, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
 

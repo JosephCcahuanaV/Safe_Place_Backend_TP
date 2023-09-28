@@ -1,5 +1,6 @@
 package Backendproject.services;
 
+import Backendproject.dtos.CountClientDTO;
 import Backendproject.entities.Client;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface ClientService {
 
     public Client findById(Long id);
     Client findOldestClient();
+
+    List<CountClientDTO> countClientsByNationality();
 }

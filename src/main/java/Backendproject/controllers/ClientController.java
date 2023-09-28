@@ -1,5 +1,6 @@
 package Backendproject.controllers;
 
+import Backendproject.dtos.CountClientDTO;
 import Backendproject.entities.Client;
 import Backendproject.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,11 @@ public class ClientController {
     }
 
 
+    @GetMapping("/contarPorNacionalidad")
+    public ResponseEntity<List<CountClientDTO>> countClientsByNationality() {
+        List<CountClientDTO> counts = clientService.countClientsByNationality();
+        return new ResponseEntity<>(counts, HttpStatus.OK);
+    }
 
 
 }
