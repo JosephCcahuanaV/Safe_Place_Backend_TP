@@ -1,5 +1,6 @@
 package Backendproject.serviceImpl;
 
+import Backendproject.dtos.CountClientDTO;
 import Backendproject.entities.Client;
 import Backendproject.exceptions.IncompleteDataException;
 import Backendproject.exceptions.KeyRepeatedDataException;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -53,5 +55,13 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client findOldestClient() {
         return clientRepository.findOldestClient();
+    }
+
+    public List<CountClientDTO> countClientsByNationality() {
+        List<Object[]> results = clientRepository.countClientsByNationality();
+
+        return results.stream()
+                .map(result -> new CountClientDTO((String) result[0], (Long) result[1]))
+                .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,7 @@
 package Backendproject.serviceImpl;
 
 import Backendproject.dtos.CountLocalDTO;
+import Backendproject.dtos.LocalDTO;
 import Backendproject.entities.Client;
 import Backendproject.entities.Local;
 import Backendproject.entities.Payment;
@@ -48,6 +49,27 @@ public class LocalServiceImpl implements LocalService {
         }
         return localFound;
     }
+
+    @Override
+    public CountLocalDTO countAllLocals() {
+        CountLocalDTO countLocalDTO = new CountLocalDTO();
+        countLocalDTO.setCantidadlocals(localRepository.countAllLocals());
+        return countLocalDTO;
+    }
+
+    public LocalDTO findMostExpensiveLocal() {
+        Local mostExpensiveLocal = localRepository.findMostExpensiveLocal();
+        if (mostExpensiveLocal != null) {
+            return new LocalDTO(mostExpensiveLocal.getName(), mostExpensiveLocal.getPrice());
+        } else {
+            return null; // Puedes manejar esto como desees (lanzar una excepción, por ejemplo).
+        }
+    }
+    @Override
+    public Double findPriceOfWeeklyRentalById(Long id) {
+        return localRepository.findPriceOfWeeklyRentalById(id);
+    }
+
 
 }
 

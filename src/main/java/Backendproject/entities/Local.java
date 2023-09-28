@@ -23,7 +23,7 @@ public class Local {
     private String ubication;
     private String description;
     private Long capacity;
-    private Double payxday;
+    private Double price;
     private Boolean is_active;
 
     @ManyToOne   // viene de renter
