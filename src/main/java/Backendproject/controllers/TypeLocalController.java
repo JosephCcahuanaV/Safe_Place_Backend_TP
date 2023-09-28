@@ -15,7 +15,25 @@ import java.util.List;
 @RequestMapping("/api")
 
 public class TypeLocalController {
+    @Autowired
+    TypeLocalService typeLocalService;
 
+    @GetMapping("/typelocals")
+    public ResponseEntity<List<TypeLocal>> getAllTypeLocals() {
+        List<TypeLocal> typeLocals = typeLocalService.listAll();
+        return new ResponseEntity<List<TypeLocal>>(typeLocals, HttpStatus.OK);
+    }
+
+    @PostMapping("/typelocals/create")
+    public ResponseEntity<TypeLocal> createTypeLocal(@RequestBody TypeLocal typeLocal) {
+        TypeLocal newTypeLocal = typeLocalService.save(typeLocal);
+        return new ResponseEntity<TypeLocal>(newTypeLocal, HttpStatus.CREATED);
+    }
+    @DeleteMapping("/typelocals/{id}")
+    public ResponseEntity<HttpStatus> deleteTypeLocal(@PathVariable("id") Long id) {
+        typeLocalService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 
 }

@@ -16,6 +16,26 @@ import java.util.List;
 
 public class UserController {
 
+    @Autowired
+    UserService userService;
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.listAll();
+        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+    }
+
+    @PostMapping("/users/create")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User newUser = userService.save(user);
+        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") Long id) {
+        userService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 
 }
