@@ -29,7 +29,7 @@ public class TypeLocalController {
         TypeLocal newTypeLocal = typeLocalService.save(typeLocal);
         return new ResponseEntity<TypeLocal>(newTypeLocal, HttpStatus.CREATED);
     }
-    @DeleteMapping("/typelocals/{id}")
+    @DeleteMapping("/typelocals/delete/{id}")
     public ResponseEntity<HttpStatus> deleteTypeLocal(@PathVariable("id") Long id) {
         typeLocalService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

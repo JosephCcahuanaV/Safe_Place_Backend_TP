@@ -47,7 +47,7 @@ public class BackendAplication {
             );
 
             userSecurityRepository.save(
-                    new UserSecurity("Ahxeluis", new BCryptPasswordEncoder().encode("ahxel100000"),true,new Date(),
+                    new UserSecurity("ahxeluis", new BCryptPasswordEncoder().encode("ahxel100000"),true,new Date(),
                             List.of(
                                     authorityRepository.findByName(AuthorityName.ROLE_ADMIN),
                                     authorityRepository.findByName(AuthorityName.ROLE_PRINCIPAL),
@@ -68,10 +68,19 @@ public class BackendAplication {
             );
 
             userSecurityRepository.save(
-                    new UserSecurity("Carlos", new BCryptPasswordEncoder().encode("serna123"),true,new Date(),
+                    new UserSecurity("carlos", new BCryptPasswordEncoder().encode("serna123"),true,new Date(),
                             List.of(
                                     authorityRepository.findByName(AuthorityName.ROLE_CLIENT),
-                                    authorityRepository.findByName(AuthorityName.READ)
+                                    authorityRepository.findByName(AuthorityName.WRITE)
+                            )
+                    )
+            );
+
+            userSecurityRepository.save(
+                    new UserSecurity("danilo", new BCryptPasswordEncoder().encode("danilo123"),true,new Date(),
+                            List.of(
+                                    authorityRepository.findByName(AuthorityName.ROLE_RENDER),
+                                    authorityRepository.findByName(AuthorityName.WRITE)
                             )
                     )
             );

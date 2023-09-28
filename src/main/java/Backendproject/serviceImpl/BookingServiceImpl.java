@@ -2,6 +2,7 @@ package Backendproject.serviceImpl;
 
 import Backendproject.entities.Booking;
 import Backendproject.entities.Review;
+import Backendproject.exceptions.ResourceNotFoundException;
 import Backendproject.repositories.BookingRepository;
 import Backendproject.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class BookingServiceImpl implements BookingService {
     BookingRepository bookingRepository;
     @Override
     public List<Booking> listAll() {
-        List<Booking> bookings=bookingRepository.findAll();
+        List<Booking> bookings= bookingRepository.findAll();
         return bookings;
     }
 
@@ -35,6 +36,11 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Booking findById(Long id) {
         Booking bookingFound = bookingRepository.findById(id).orElse(null);
+
+        if (bookingFound == null) {
+            throw new ResourceNotFoundException("There are no object with the id: "+String.valueOf(id));
+        }
+
         return bookingFound;
     }
 }

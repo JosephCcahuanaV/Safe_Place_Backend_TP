@@ -1,5 +1,6 @@
 package Backendproject.controllers;
 
+import Backendproject.entities.Client;
 import Backendproject.entities.Contract;
 import Backendproject.entities.Review;
 import Backendproject.services.ContractService;
@@ -20,13 +21,19 @@ public class ContractController {
         List<Contract> contracts = contractService.listAll();
         return new ResponseEntity<List<Contract>>(contracts, HttpStatus.OK);
     }
+    @GetMapping("/contracts/{id}")
+    public ResponseEntity<Contract> getAContractById(@PathVariable("id") Long id) {
+        Contract contract = contractService.findById(id);
+        return new ResponseEntity<Contract>(contract, HttpStatus.OK);
+    }
+
     @PostMapping("/contracts/create")
-    public ResponseEntity<Contract> createRenter(@RequestBody Contract contract) {
+    public ResponseEntity<Contract> createContract(@RequestBody Contract contract) {
         Contract newContract = contractService.save(contract);
         return new ResponseEntity<Contract>(newContract, HttpStatus.CREATED);
     }
-    @DeleteMapping("/contracts/{id}")
-    public ResponseEntity<HttpStatus> deleteReview(@PathVariable("id") Long id) {
+    @DeleteMapping("/contracts/delete/{id}")
+    public ResponseEntity<HttpStatus> deleteContract(@PathVariable("id") Long id) {
         contractService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

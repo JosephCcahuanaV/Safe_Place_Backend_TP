@@ -24,17 +24,48 @@ public class ClientController {
         List<Client> clients = clientService.listAll();
         return new ResponseEntity<List<Client>>(clients, HttpStatus.OK);
     }
+    @GetMapping("/clients/{id}")
+    public ResponseEntity<Client> getAEmployeeById(@PathVariable("id") Long id) {
+        Client client = clientService.findById(id);
+        return new ResponseEntity<Client>(client, HttpStatus.OK);
+    }
 
     @PostMapping("/clients/create")
     public ResponseEntity<Client> createClient(@RequestBody Client client) {
         Client newClient = clientService.save(client);
         return new ResponseEntity<Client>(newClient, HttpStatus.CREATED);
     }
-    @DeleteMapping("/clients/{id}")
+    @DeleteMapping("/clients/delete/{id}")
     public ResponseEntity<HttpStatus> deleteClient(@PathVariable("id") Long id) {
         clientService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PutMapping("/clients/update/{id}")
+    public ResponseEntity<Client> updateClient(@RequestBody Client client, @PathVariable("id") Long id) {
+        Client foundClient = clientService.findById(id);
+        if (client.getName()!=null) {
+            foundClient.setName(client.getName());
+        }
+        if (client.getLastname()!=null) {
+            foundClient.setLastname(client.getLastname());
+        }
+        if (client.getNumberPhone()!=null) {
+            foundClient.setNumberPhone(client.getNumberPhone());
+        }
+        if (client.getDni()!=null) {
+            foundClient.setDni(client.getDni());
+        }
+
+        if (client.getRuc()!=null) {
+            foundClient.setRuc(client.getRuc());
+        }
+
+
+        Client newClient = clientService.save(foundClient);
+        return new ResponseEntity<Client>(newClient, HttpStatus.OK);
+    }
+
 
 }
+

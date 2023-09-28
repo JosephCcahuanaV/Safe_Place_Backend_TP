@@ -2,6 +2,9 @@ package Backendproject.serviceImpl;
 
 import Backendproject.entities.TypeLocal;
 import Backendproject.entities.User;
+import Backendproject.exceptions.IncompleteDataException;
+import Backendproject.exceptions.KeyRepeatedDataException;
+import Backendproject.exceptions.ResourceNotFoundException;
 import Backendproject.repositories.UserRepository;
 import Backendproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
+
+        if (user.getUsername()==null || user.getUsername().isEmpty()) {
+            throw new IncompleteDataException("name can not be null or empty");
+        }
+
+
         return userRepository.save(user);
     }
 
@@ -35,6 +44,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Long id){
         User userFound = userRepository.findById(id).orElse(null);
+        if (userFound == null) {
+            throw new ResourceNotFoundException("There are no object with the id: "+String.valueOf(id));
+        }
         return userFound;
     }
 

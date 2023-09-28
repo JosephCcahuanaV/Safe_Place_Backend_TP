@@ -2,6 +2,7 @@ package Backendproject.serviceImpl;
 
 import Backendproject.entities.Client;
 import Backendproject.entities.Contract;
+import Backendproject.exceptions.ResourceNotFoundException;
 import Backendproject.repositories.ContractRepository;
 import Backendproject.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,10 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public Contract findById(Long id) {
         Contract contractFound = contractRepository.findById(id).orElse(null);
+        if (contractFound == null) {
+            throw new ResourceNotFoundException("There are no object with the id: "+String.valueOf(id));
+        }
+
         return contractFound;
     }
 }

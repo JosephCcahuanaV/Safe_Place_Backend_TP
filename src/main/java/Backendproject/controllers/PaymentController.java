@@ -1,6 +1,7 @@
 package Backendproject.controllers;
 
 import Backendproject.entities.Contract;
+import Backendproject.entities.Local;
 import Backendproject.entities.Payment;
 import Backendproject.services.ContractService;
 import Backendproject.services.PaymentService;
@@ -21,12 +22,13 @@ public class PaymentController {
         List<Payment> payments = paymentService.listAll();
         return new ResponseEntity<List<Payment>>(payments, HttpStatus.OK);
     }
+
     @PostMapping("/payments/create")
     public ResponseEntity<Payment> createRenter(@RequestBody Payment payment) {
         Payment newPayment = paymentService.save(payment);
         return new ResponseEntity<Payment>(newPayment, HttpStatus.CREATED);
     }
-    @DeleteMapping("/payments/{id}")
+    @DeleteMapping("/payments/delete/{id}")
     public ResponseEntity<HttpStatus> deleteReview(@PathVariable("id") Long id) {
         paymentService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
