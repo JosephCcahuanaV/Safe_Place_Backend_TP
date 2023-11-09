@@ -37,6 +37,8 @@ public class ReviewController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+
+    //LO DE ABAJO SE PUEDE BORRAR
     @GetMapping("/reviews/{id}")
     public ResponseEntity<Review> getAReviewById(@PathVariable("id") Long id) {
         Review review = reviewService.findById(id);

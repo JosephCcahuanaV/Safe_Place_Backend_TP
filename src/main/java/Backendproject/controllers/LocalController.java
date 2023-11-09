@@ -68,11 +68,15 @@ public class LocalController {
         Local newLocal = localService.save(fountlocal);
         return new ResponseEntity<Local>(newLocal, HttpStatus.OK);
     }
+
+    //PARA QUE
     @GetMapping("/countAllLocals")
     public ResponseEntity<CountLocalDTO> countAllLocals() {
         CountLocalDTO countLocalDTO = localService.countAllLocals();
         return new ResponseEntity<>(countLocalDTO, HttpStatus.OK);
     }
+
+
 
     @GetMapping("/expensive")
     public ResponseEntity<LocalDTO> getMostExpensiveLocal() {
@@ -85,6 +89,8 @@ public class LocalController {
         }
     }
 
+
+    //PARA QUE
     @GetMapping("/price/{id}")
     public ResponseEntity<Double> getPriceOfWeeklyRental(@PathVariable Long id) {
         Double price = localService.findPriceOfWeeklyRentalById(id);

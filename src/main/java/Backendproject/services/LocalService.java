@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface LocalService {
 
+    //EN LUGAR DE LOCAL, SE TIENE UN DTO CON TODAS LAS ESPECIFICACIONES
     public List<Local> listAll();
     public Local save(Local local);
     public void delete(Long id);

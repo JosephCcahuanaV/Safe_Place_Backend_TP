@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -36,12 +37,20 @@ public class User{
 
    // @OneToMany(mappedBy = "user") // relacion con la tabla rol_user
     //private List<RolUser> rolUsers;
-
+   private List<Authority> authorities;
 
     @OneToOne(mappedBy = "user")  // relacion uno a uno con la tabla client
     private Client client;
 
     @OneToOne(mappedBy = "user")  // relacion uno a uno con la tabla renter
     private Renter renter;
+
+    public User(String username, String password, Date expirityDay, boolean is_active ) {
+        this.username = username;
+        this.password = password;
+        this.expirityDay = expirityDay;
+        this.is_active = is_active;
+        this.authorities = authorities;
+    }
 
 }

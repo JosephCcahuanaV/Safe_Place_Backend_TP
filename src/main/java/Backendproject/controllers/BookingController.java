@@ -19,17 +19,17 @@ public class BookingController {
     BookingService bookingService;
 
     @GetMapping("/bookings")
-    public ResponseEntity<List<Booking>> getAllReviews() {
+    public ResponseEntity<List<Booking>> getAllBookings() {
         List<Booking> bookings = bookingService.listAll();
         return new ResponseEntity<List<Booking>>(bookings, HttpStatus.OK);
     }
     @PostMapping("/bookings/create")
-    public ResponseEntity<Booking> createRenter(@RequestBody Booking booking) {
+    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
         Booking newBooking = bookingService.save(booking);
         return new ResponseEntity<Booking>(newBooking, HttpStatus.CREATED);
     }
     @DeleteMapping("/bookings/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteReview(@PathVariable("id") Long id) {
+    public ResponseEntity<HttpStatus> deleteBooking(@PathVariable("id") Long id) {
         bookingService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

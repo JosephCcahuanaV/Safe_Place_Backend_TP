@@ -27,7 +27,10 @@ public class Rol {
     @ManyToMany(mappedBy = "rols", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<User> users;
 
-
+/*
+    public Rol(String name) {
+        this.name = name;
+    }*/
 
     //@OneToMany(mappedBy = "rol")
     //private List<RolUser> rolUsers;

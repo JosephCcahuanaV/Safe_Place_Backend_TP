@@ -24,6 +24,15 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking save(Booking booking) {
+
+        List<Booking> historial=bookingRepository.findByClientId(booking.getClient().getId());
+        for(Booking b: historial){
+            if(b.getLocal().getId().equals(booking.getLocal().getId()) ){
+                throw new RuntimeException("El local ya se encuentra reservado");
+            }
+        }
+
+
         return bookingRepository.save(booking);
     }
 

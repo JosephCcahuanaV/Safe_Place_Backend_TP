@@ -31,4 +31,16 @@ public class Review {
     @ManyToOne //viene de Local
     @JoinColumn(name = "local_Id")
     private Local local;
+
+    /*NUEVOOOO
+
+
+
+    public Review(String recomendation, Long calification, Boolean positive, Client client, Local local){
+        this.recomendation=recomendation;
+        this.calification=calification;
+        this.positive=positive;
+        this.client=client;
+        this.local=local;
+    }*/
 }

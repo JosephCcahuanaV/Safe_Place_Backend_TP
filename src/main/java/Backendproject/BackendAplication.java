@@ -46,6 +46,8 @@ public class BackendAplication {
                     )
             );
 
+
+
             userSecurityRepository.save(
                     new UserSecurity("ahxeluis", new BCryptPasswordEncoder().encode("ahxel100000"),true,new Date(),
                             List.of(

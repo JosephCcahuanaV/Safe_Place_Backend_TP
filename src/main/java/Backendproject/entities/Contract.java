@@ -24,6 +24,4 @@ public class Contract {
     @OneToMany(mappedBy = "contract") // va hacia la tabla bookings, uno a muchos
     private List<Booking> bookings;
 
-
-
 }

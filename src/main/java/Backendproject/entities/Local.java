@@ -41,6 +41,16 @@ public class Local {
     @OneToMany(mappedBy = "local") // va hacia la tabla bookings, uno a muchos
     private List<Booking> bookings;
 
-
+    /*
+    public Local(String name, String ubication, String description, Long capacity, Double price, Boolean is_active, Renter renter,TypeLocal typeLocal){
+        this.name=name;
+        this.ubication=ubication;
+        this.description=description;
+        this.capacity=capacity;
+        this.price=price;
+        this.is_active=is_active;
+        this.renter=renter;
+        this.typeLocal=typeLocal;
+    }*/
 
 }

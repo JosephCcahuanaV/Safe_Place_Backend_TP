@@ -27,6 +27,12 @@ public class UserSecurity {
     private String password;
     private boolean enabled;
     private Date passwordLastUpdate;
+    /*
+    private String name;
+    private String lastname;
+    private String email;
+    private String numberPhone;
+    private String dni;*/
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
@@ -49,7 +55,6 @@ public class UserSecurity {
     )
     private List<Authority> authorities;
 
-
     public UserSecurity(String userName, String password, boolean enabled, Date passwordLastUpdate, List<Authority> authorities) {
         this.userName = userName;
         this.password = password;
@@ -57,4 +62,15 @@ public class UserSecurity {
         this.passwordLastUpdate = passwordLastUpdate;
         this.authorities = authorities;
     }
+
+/*
+    public UserSecurity(String userName, String password, String name, String lastname, String email, String numberPhone,String dni) {
+        this.userName = userName;
+        this.password = password;
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.numberPhone=numberPhone;
+        this.dni=dni;
+    }*/
 }
