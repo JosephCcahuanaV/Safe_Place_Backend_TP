@@ -30,7 +30,7 @@ public class UserSecurityController {
     @Autowired
     UsersecurityService usersecurityService;
 
-    @PostMapping("/users/register")
+    @PostMapping("/users")
     public ResponseEntity<UserSecurity> createUser(@RequestBody UserSecurityDTO user) {
         UserSecurity newUser = usersecurityService.register(user);
         return new ResponseEntity<UserSecurity>(newUser, HttpStatus.CREATED);
@@ -58,10 +58,5 @@ public class UserSecurityController {
         String jwt = jwtUtilService.generateToken(securityUser);
         Long id = securityUser.getUser().getId();
         return new ResponseEntity<DTOToken>(new DTOToken(jwt, id), HttpStatus.OK);
-
     }
-
-
-
-
 }
