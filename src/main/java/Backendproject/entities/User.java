@@ -33,7 +33,7 @@ public class User{
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
-    private List<Rol> rols;
+
 
    // @OneToMany(mappedBy = "user") // relacion con la tabla rol_user
     //private List<RolUser> rolUsers;
@@ -45,7 +45,7 @@ public class User{
     @OneToOne(mappedBy = "user")  // relacion uno a uno con la tabla renter
     private Renter renter;
 
-    public User(String username, String password, Date expirityDay, boolean is_active ) {
+    public User(String username, String password, Date expirityDay, boolean is_active, List<Authority> authorities ) {
         this.username = username;
         this.password = password;
         this.expirityDay = expirityDay;
