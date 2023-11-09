@@ -16,6 +16,4 @@ public interface ClientService {
     public Client findById(Long id);
     Client findOldestClient();
 
-    List<ClientDTO> countClientsByRuc();
-
 }

@@ -18,19 +18,19 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping("/users2")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.listAll();
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
-    @PostMapping("/users/create")
+    @PostMapping("/users2/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User newUser = userService.save(user);
         return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/users/delete/{id}")
+    @DeleteMapping("/users2/delete/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") Long id) {
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

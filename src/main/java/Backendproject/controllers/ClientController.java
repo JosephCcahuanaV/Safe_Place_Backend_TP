@@ -58,21 +58,10 @@ public class ClientController {
         if (client.getDni()!=null) {
             foundClient.setDni(client.getDni());
         }
-
-        if (client.getRuc()!=null) {
-            foundClient.setRuc(client.getRuc());
-        }
-
-
         Client newClient = clientService.save(foundClient);
         return new ResponseEntity<Client>(newClient, HttpStatus.OK);
     }
 
-    @GetMapping("/ruc")
-    public ResponseEntity<List<ClientDTO>> countClientsByRuc() {
-        List<ClientDTO> result = clientService.countClientsByRuc();
-        return ResponseEntity.ok(result);
-    }
 
 
 

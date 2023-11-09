@@ -15,7 +15,4 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Query(value = "SELECT c.nationality, COUNT(c.id) as cantidad_clientes FROM clients c GROUP BY c.nationality", nativeQuery = true)
     List<Object[]> countClientsByNationality();
-
-    @Query("SELECT c.ruc as ruc, COUNT(c) as count FROM Client c GROUP BY c.ruc")
-    List<Object[]> countClientsByRuc();
 }

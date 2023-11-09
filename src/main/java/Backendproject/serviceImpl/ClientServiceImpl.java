@@ -67,17 +67,4 @@ public class ClientServiceImpl implements ClientService {
                 .collect(Collectors.toList());
     }
 
-    public List<ClientDTO> countClientsByRuc() {
-        List<Object[]> results = clientRepository.countClientsByRuc();
-        List<ClientDTO> clientDTOs = new ArrayList<>();
-
-        for (Object[] result : results) {
-            String ruc = (String) result[0];
-            Long count = (Long) result[1];
-            ClientDTO clientDTO = new ClientDTO(ruc, count);
-            clientDTOs.add(clientDTO);
-        }
-
-        return clientDTOs;
-    }
 }
