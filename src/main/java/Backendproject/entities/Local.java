@@ -24,7 +24,6 @@ public class Local {
     private String description;
     private Long capacity;
     private Double price;
-    private Boolean is_active;
 
     @ManyToOne   // viene de renter
     @JoinColumn(name = "renter_Id")
@@ -40,7 +39,6 @@ public class Local {
 
     @OneToMany(mappedBy = "local") // va hacia la tabla bookings, uno a muchos
     private List<Booking> bookings;
-
 
 
 }
