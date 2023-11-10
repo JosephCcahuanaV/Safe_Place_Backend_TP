@@ -59,10 +59,6 @@ public class LocalController {
             fountlocal.setPrice(local.getPrice());
         }
 
-        if (local.getIs_active()!=null) {
-            fountlocal.setIs_active(local.getIs_active());
-        }
-
         Local newLocal = localService.save(fountlocal);
         return new ResponseEntity<Local>(newLocal, HttpStatus.OK);
     }
