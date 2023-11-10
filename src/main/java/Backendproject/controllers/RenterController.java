@@ -1,5 +1,7 @@
 package Backendproject.controllers;
 
+import Backendproject.dtos.LocalDTO;
+import Backendproject.dtos.RenterDTO;
 import Backendproject.entities.Client;
 import Backendproject.entities.Local;
 import Backendproject.entities.Renter;
@@ -84,6 +86,12 @@ public class RenterController {
 
         Renter newRenter = renterService.save(foundRenter);
         return new ResponseEntity<Renter>(newRenter, HttpStatus.OK);
+    }
+
+    @GetMapping("/nationality")
+    public ResponseEntity<List<RenterDTO>> countRentersByNationality() {
+        List<RenterDTO> result = renterService.countRentersByNationality2();
+        return ResponseEntity.ok(result);
     }
 
 

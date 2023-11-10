@@ -2,6 +2,7 @@ package Backendproject.services;
 
 
 import Backendproject.dtos.LocalDTO;
+import Backendproject.dtos.LocalWithPriceIncludingIgvDto;
 import Backendproject.entities.Local;
 import Backendproject.dtos.CountLocalDTO;
 import java.util.List;
@@ -18,9 +19,9 @@ public interface LocalService {
 
     CountLocalDTO countAllLocals();
 
-    LocalDTO findMostExpensiveLocal();
-    Double findPriceOfWeeklyRentalById(Long localId);
+    LocalDTO findLocalWithHighestPrice();
 
+    LocalWithPriceIncludingIgvDto findLocalByIdWithPriceIncludingIgv(Long id);
 
 
 

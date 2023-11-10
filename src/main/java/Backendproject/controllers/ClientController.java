@@ -1,5 +1,6 @@
 package Backendproject.controllers;
 
+import Backendproject.dtos.ClientDTO;
 import Backendproject.dtos.CountClientDTO;
 import Backendproject.entities.Client;
 import Backendproject.services.ClientService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 
@@ -57,22 +59,11 @@ public class ClientController {
         if (client.getDni()!=null) {
             foundClient.setDni(client.getDni());
         }
-
-        if (client.getRuc()!=null) {
-            foundClient.setRuc(client.getRuc());
-        }
-
-
         Client newClient = clientService.save(foundClient);
         return new ResponseEntity<Client>(newClient, HttpStatus.OK);
     }
 
 
-    @GetMapping("/contarPorNacionalidad")
-    public ResponseEntity<List<CountClientDTO>> countClientsByNationality() {
-        List<CountClientDTO> counts = clientService.countClientsByNationality();
-        return new ResponseEntity<>(counts, HttpStatus.OK);
-    }
 
 
 }

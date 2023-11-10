@@ -1,13 +1,16 @@
 package Backendproject.dtos;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class LocalDTO {
+public class UserSecurityDTO {
 
     private Long id;
-    private String name;
-    private Double price;
+
+    private String userName;
+    private String password;
+    private String type;
 }

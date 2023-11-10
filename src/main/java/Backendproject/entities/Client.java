@@ -24,7 +24,7 @@ public class Client {
     private String email;
     private String numberPhone;
     private String Dni;
-    private String ruc;
+
 
     @OneToOne
     @JoinColumn(name = "user_Id") // viene de la tabla USER

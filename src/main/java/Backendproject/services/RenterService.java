@@ -1,6 +1,7 @@
 package Backendproject.services;
 
-import Backendproject.entities.Client;
+import Backendproject.dtos.RenterDTO;
+
 import Backendproject.entities.Renter;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface RenterService {
     public void delete(Long id);
 
     public Renter findById(Long id);
+
+    List<RenterDTO> countRentersByNationality2();
 }

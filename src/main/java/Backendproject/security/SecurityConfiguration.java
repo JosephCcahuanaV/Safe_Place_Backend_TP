@@ -1,9 +1,9 @@
 package Backendproject.security;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,7 +27,8 @@ public class SecurityConfiguration {
             "/swagger-resources/**",
             "/swagger-ui/**",
             // -- login
-            "/api/login/**"
+            "/api/users/login/**",
+            "/api/users/register/**"
     };
 
     @Bean
@@ -50,8 +51,7 @@ public class SecurityConfiguration {
 
 
         http.authorizeHttpRequests( (auth) ->auth
-                .antMatchers(AUTH_WHITELIST).permitAll()
-
+                /*
                 //CLIENT
                 .antMatchers("/api/clients").hasRole("ADMIN")
                 .antMatchers("/api/clients/create").hasAnyRole("CLIENT","ADMIN")
@@ -97,13 +97,30 @@ public class SecurityConfiguration {
                 .antMatchers("/api/renters/update/{id}").hasAnyRole("CLIENT","ADMIN")
                 .antMatchers("/api/renters/{id}").hasAnyRole("CLIENT","ADMIN")
 
+                //Querys
 
-
-
-
+                .antMatchers("/api/ruc").hasRole("ADMIN")
+                .antMatchers("/api/countAllLocals").hasRole("ADMIN")
+                .antMatchers("/api/highprice").hasRole("ADMIN")
+                .antMatchers("/api/igv/{id}").hasRole("ADMIN")
+                .antMatchers("/api/nationality").hasRole("ADMIN")
+                 */
 
                 //.antMatchers("/api/clients/{id}").hasAnyRole("CLIENT")
+                .anyRequest().permitAll()
+
+
+                /*
+                .antMatchers(AUTH_WHITELIST).permitAll()
+
+                .antMatchers(HttpMethod.GET,"/api/clients/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_CLIENT")
+
+                .antMatchers("/api/clients/**").hasAnyAuthority("ROLE_ADMIN")
+
                 .anyRequest().authenticated()
+                */
+
+
         );
 
 

@@ -3,11 +3,15 @@ package Backendproject.dtos;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 public class UserDTO {
-    private Long id;
-    private String userName;
+
+
+    private String username;
     private String password;
-    private String type;
+    private Date expirityDay;
+    private Boolean is_active;
 }
