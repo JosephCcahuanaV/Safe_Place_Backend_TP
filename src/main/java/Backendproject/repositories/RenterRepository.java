@@ -11,6 +11,9 @@ public interface RenterRepository extends JpaRepository<Renter, Long> {
 
     //List<Renter> findByNameContaining(String name);
 
+    Renter findByName(String name);
+
+    /*
     @Query("SELECT r.nacionality as nacionality, COUNT(r) as count FROM Renter r GROUP BY r.nacionality")
-    List<Object[]> countRentersByNationality();
+    List<Object[]> countRentersByNationality();*/
 }

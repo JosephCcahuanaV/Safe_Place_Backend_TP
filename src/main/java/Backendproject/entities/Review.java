@@ -4,6 +4,7 @@ package Backendproject.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,24 +24,15 @@ public class Review {
     private Long calification;
     private Boolean positive;
 
-
+    @ToString.Exclude
     @ManyToOne //viene de Client
     @JoinColumn(name = "client_Id")
     private Client client;
 
+    @ToString.Exclude
     @ManyToOne //viene de Local
     @JoinColumn(name = "local_Id")
     private Local local;
 
-    /*NUEVOOOO
 
-
-
-    public Review(String recomendation, Long calification, Boolean positive, Client client, Local local){
-        this.recomendation=recomendation;
-        this.calification=calification;
-        this.positive=positive;
-        this.client=client;
-        this.local=local;
-    }*/
 }

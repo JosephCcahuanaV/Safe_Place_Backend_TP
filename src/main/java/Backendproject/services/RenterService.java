@@ -13,5 +13,5 @@ public interface RenterService {
 
     public Renter findById(Long id);
 
-    List<RenterDTO> countRentersByNationality2();
+
 }

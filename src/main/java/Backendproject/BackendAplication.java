@@ -1,10 +1,10 @@
 package Backendproject;
 
 
-import Backendproject.entities.Authority;
-import Backendproject.entities.AuthorityName;
-import Backendproject.entities.UserSecurity;
+import Backendproject.entities.*;
 import Backendproject.repositories.AuthorityRepository;
+import Backendproject.repositories.BookingRepository;
+import Backendproject.repositories.LocalRepository;
 import Backendproject.repositories.UserSecurityRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,7 +29,9 @@ public class BackendAplication {
 
 
             AuthorityRepository authorityRepository,
-            UserSecurityRepository userSecurityRepository
+            UserSecurityRepository userSecurityRepository,
+            BookingRepository bookingRepository,
+            LocalRepository localRepository
     ) {
         return args -> {
             //CRUD
@@ -57,7 +59,7 @@ public class BackendAplication {
                             )
                     )
             );
-
+       /*
             userSecurityRepository.save(
                     new UserSecurity("joseph123", new BCryptPasswordEncoder().encode("joseph123"),true,new Date(),
                             List.of(
@@ -85,7 +87,7 @@ public class BackendAplication {
                             )
                     )
             );
-
+*/
 
         };
     }
