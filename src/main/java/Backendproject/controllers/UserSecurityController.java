@@ -2,7 +2,6 @@ package Backendproject.controllers;
 
 import Backendproject.dtos.DTOToken;
 import Backendproject.dtos.UserSecurityDTO;
-import Backendproject.entities.Local;
 import Backendproject.entities.UserSecurity;
 import Backendproject.security.JwtUtilService;
 import Backendproject.services.UsersecurityService;
@@ -17,11 +16,9 @@ import Backendproject.security.SecurityUser;
 
 import java.util.List;
 
-
-//RUTAas
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "**")
 public class UserSecurityController {
 
     @Autowired

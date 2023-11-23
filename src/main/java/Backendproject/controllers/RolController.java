@@ -1,8 +1,6 @@
 package Backendproject.controllers;
 
-import Backendproject.entities.Review;
 import Backendproject.entities.Rol;
-import Backendproject.services.ReviewService;
 import Backendproject.services.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,9 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-
+@CrossOrigin(origins = "**")
 public class RolController {
-
     @Autowired
     RolService rolService;
 

@@ -1,9 +1,6 @@
 package Backendproject.controllers;
 
-import Backendproject.entities.Client;
-import Backendproject.entities.Renter;
 import Backendproject.entities.Review;
-import Backendproject.services.RenterService;
 import Backendproject.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,9 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-
+@CrossOrigin(origins = "**")
 public class ReviewController {
-
     @Autowired
     ReviewService reviewService;
 

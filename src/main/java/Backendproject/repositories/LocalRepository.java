@@ -1,16 +1,12 @@
 package Backendproject.repositories;
 
-import Backendproject.dtos.LocalWithPriceIncludingIgvDto;
 import Backendproject.entities.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
 import java.util.Map;
 
 public interface LocalRepository extends JpaRepository<Local, Long> {
-
-    //List<Local> findByNameContaining(String name);
 
     @Query(value = "SELECT COUNT(*) FROM locals", nativeQuery = true)
     Integer countAllLocals();

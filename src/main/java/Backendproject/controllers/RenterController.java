@@ -1,11 +1,7 @@
 package Backendproject.controllers;
 
-import Backendproject.dtos.LocalDTO;
 import Backendproject.dtos.RenterDTO;
-import Backendproject.entities.Client;
-import Backendproject.entities.Local;
 import Backendproject.entities.Renter;
-import Backendproject.repositories.RenterRepository;
 import Backendproject.services.RenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,13 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
-
+@CrossOrigin(origins = "**")
 public class RenterController {
-
-
     @Autowired
     RenterService renterService;
 

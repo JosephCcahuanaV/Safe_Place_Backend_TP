@@ -1,11 +1,7 @@
 package Backendproject.controllers;
 
-import Backendproject.dtos.ClientDTO;
-import Backendproject.dtos.CountClientDTO;
 import Backendproject.entities.Client;
 import Backendproject.services.ClientService;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,18 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
-
-
-@JsonInclude(JsonInclude.Include.NON_NULL) // todas las respuestas de las solicitudes que tengan un valor nulo no las incluya
+@CrossOrigin(origins = "**")
 public class ClientController {
-
     @Autowired
     ClientService clientService;
-
-    //NUEVA RUTA : http://localhost:8080/api/clients
 
     @GetMapping("/clients")
     public ResponseEntity<List<Client>> getAllClients() {

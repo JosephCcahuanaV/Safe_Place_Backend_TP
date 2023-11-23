@@ -1,8 +1,6 @@
 package Backendproject.controllers;
 
-import Backendproject.entities.Rol;
 import Backendproject.entities.TypeLocal;
-import Backendproject.services.RolService;
 import Backendproject.services.TypeLocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-
+@CrossOrigin(origins = "**")
 public class TypeLocalController {
     @Autowired
     TypeLocalService typeLocalService;

@@ -16,44 +16,23 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Arrays;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 @Configuration
 public class SecurityConfiguration {
-    /*
-    http://localhost:8080/swagger-ui/index.html
-    */
-    private static final String[] AUTH_WHITELIST = {
-            // -- swagger ui
-            "/v2/api-docs/**",
-            "/v3/api-docs/**",
-            "/swagger-resources/**",
-            "/swagger-ui/**",
-            // -- login
-            "/api/users/login/**",
-            "/api/users/register/**"
-    };
-
-    @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration
-                                                        authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http.csrf().disable();
-        
-        // Configure CORS
         http.cors(cors -> cors.configurationSource(request -> {
             CorsConfiguration configuration = new CorsConfiguration();
-            configuration.setAllowedOrigins(Arrays.asList("*")); // Allow all origins
+            configuration.setAllowedOrigins(Arrays.asList("*"));
             configuration.setAllowedMethods(Arrays.asList(
                 HttpMethod.GET.name(),
                 HttpMethod.POST.name(),
@@ -62,98 +41,18 @@ public class SecurityConfiguration {
                 HttpMethod.PATCH.name(),
                 HttpMethod.OPTIONS.name()
             ));
-            configuration.setAllowedHeaders(Arrays.asList("*")); // Allow all headers
+            configuration.setAllowedHeaders(Arrays.asList("*")); 
             return configuration;
         }));
-
         http.authorizeHttpRequests((auth) -> auth
-                /*
-                //CLIENT
-                .antMatchers("/api/clients").hasRole("ADMIN")
-                .antMatchers("/api/clients/create").hasAnyRole("CLIENT","ADMIN")
-                .antMatchers("/api/clients/delete/{id}").hasRole("ADMIN")
-                .antMatchers("/api/clients/create").hasAnyRole("CLIENT","ADMIN")
-                .antMatchers("/api/clients/update/{id}").hasAnyRole("CLIENT","ADMIN")
-                .antMatchers("/api/clients/{id}").hasAnyRole("CLIENT","ADMIN")
-
-
-                //CONTRACT
-                .antMatchers("/api/contracts").hasRole("ADMIN")
-                .antMatchers("/api/contracts/create").hasAnyRole("RENDER","ADMIN","CLIENT")
-                .antMatchers("/api/contracts/{id}").hasAnyRole("RENDER","ADMIN","CLIENT")
-                .antMatchers("/api/contracts/delete/{id}").hasRole("ADMIN")
-
-                //BOOKING
-                .antMatchers("/api/bookings").hasAnyRole("CLIENT","RENDER","ADMIN")
-                .antMatchers("/api/bookings/create").hasAnyRole("CLIENT","RENDER","ADMIN")
-                .antMatchers("/api/bookings/{id}").hasAnyRole("CLIENT","RENDER","ADMIN")
-                .antMatchers("/api/bookings/delete/{id}").hasRole("ADMIN")
-
-
-                //LOCAL
-                .antMatchers("/api/locals").hasAnyRole("RENDER","ADMIN")
-                .antMatchers("/api/locals/create").hasAnyRole("RENDER","ADMIN")
-                .antMatchers("/api/locals/{id}").hasAnyRole("RENDER","ADMIN")
-                .antMatchers("/api/locals/update/{id}").hasAnyRole("RENDER","ADMIN")
-                .antMatchers("/api/locals/delete/{id}").hasRole("ADMIN")
-
-                //REVIEW
-
-                .antMatchers("/api/reviews").hasAnyRole("CLIENT","ADMIN")
-                .antMatchers("/api/reviews/create").hasAnyRole("RENDER","ADMIN")
-                .antMatchers("/api/reviews/delete/{id}").hasRole("ADMIN")
-                .antMatchers("/api/reviews/{id}").hasAnyRole("CLIENT","ADMIN")
-
-                //RENTER
-
-                .antMatchers("/api/renters").hasRole("ADMIN")
-                .antMatchers("/api/renters/create").hasAnyRole("CLIENT","ADMIN")
-                .antMatchers("/api/renters/delete/{id}").hasRole("ADMIN")
-                .antMatchers("/api/renters/create").hasAnyRole("CLIENT","ADMIN")
-                .antMatchers("/api/renters/update/{id}").hasAnyRole("CLIENT","ADMIN")
-                .antMatchers("/api/renters/{id}").hasAnyRole("CLIENT","ADMIN")
-
-                //Querys
-
-                .antMatchers("/api/ruc").hasRole("ADMIN")
-                .antMatchers("/api/countAllLocals").hasRole("ADMIN")
-                .antMatchers("/api/highprice").hasRole("ADMIN")
-                .antMatchers("/api/igv/{id}").hasRole("ADMIN")
-                .antMatchers("/api/nationality").hasRole("ADMIN")
-                 */
-
-                //.antMatchers("/api/clients/{id}").hasAnyRole("CLIENT")
                 .anyRequest().permitAll()
-
-
-                /*
-                .antMatchers(AUTH_WHITELIST).permitAll()
-
-                .antMatchers(HttpMethod.GET,"/api/clients/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_CLIENT")
-
-                .antMatchers("/api/clients/**").hasAnyAuthority("ROLE_ADMIN")
-
-                .anyRequest().authenticated()
-                */
-
-
         );
-
-
-
         http.sessionManagement( (session)-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
-
-
         return http.build();
-
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 }
-
