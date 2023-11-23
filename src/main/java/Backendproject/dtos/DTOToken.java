@@ -8,4 +8,5 @@ import lombok.Data;
 public class DTOToken {
     String jwtToken;
     Long id;
+    String type;
 }

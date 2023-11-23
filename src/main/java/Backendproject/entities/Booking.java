@@ -35,9 +35,7 @@ public class Booking {
     @JoinColumn(name = "payment_Id")
     private Payment payment;
 
-    @ManyToOne //viene de metodo de pago
-    @JoinColumn(name = "contract_Id")
-    private Contract contract;
+
 
 
 }

@@ -7,6 +7,7 @@ import Backendproject.exceptions.IncompleteDataException;
 import Backendproject.exceptions.KeyRepeatedDataException;
 import Backendproject.exceptions.ResourceNotFoundException;
 import Backendproject.repositories.RenterRepository;
+import Backendproject.repositories.UserSecurityRepository;
 import Backendproject.services.RenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ import java.util.List;
 public class RenterServiceImpl implements RenterService {
     @Autowired
     RenterRepository renterRepository;
+
+    @Autowired
+    UserSecurityRepository securityRepository;
 
     @Override
     public List<Renter> listAll() {
@@ -43,33 +47,15 @@ public class RenterServiceImpl implements RenterService {
 
     @Override
     public Renter findById(Long id) {
-        Renter renterFound = renterRepository.findById(id).orElse(null);
+        String username = securityRepository.findById(id).orElse(null).getUserName();
+        Renter renterFound = renterRepository.findByName(username);
         if (renterFound == null) {
             throw new ResourceNotFoundException("There are no object with the id: "+String.valueOf(id));
         }
-
-
         return renterFound;
     }
 
-    /*@Override
-    public List<Object[]> countRentersByNationality() {
-        return renterRepository.countRentersByNationality();
-    }*/
 
-    public List<RenterDTO> countRentersByNationality2() {
-        List<Object[]> results = renterRepository.countRentersByNationality();
-        List<RenterDTO> renterDTOS = new ArrayList<>();
-
-        for (Object[] result : results) {
-            String nacionality = (String) result[0];
-            Long count = (Long) result[1];
-            RenterDTO renterDTO = new RenterDTO(nacionality, count);
-            renterDTOS.add(renterDTO);
-        }
-
-        return renterDTOS;
-    }
 
 
 }

@@ -14,6 +14,6 @@ public interface ClientService {
     public void delete(Long id);
 
     public Client findById(Long id);
-    Client findOldestClient();
+
 
 }

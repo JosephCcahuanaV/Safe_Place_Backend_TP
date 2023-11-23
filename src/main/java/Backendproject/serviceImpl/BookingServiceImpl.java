@@ -1,9 +1,11 @@
 package Backendproject.serviceImpl;
 
 import Backendproject.entities.Booking;
+import Backendproject.entities.Client;
 import Backendproject.entities.Review;
 import Backendproject.exceptions.ResourceNotFoundException;
 import Backendproject.repositories.BookingRepository;
+import Backendproject.repositories.ClientRepository;
 import Backendproject.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class BookingServiceImpl implements BookingService {
 
     @Autowired
     BookingRepository bookingRepository;
+    @Autowired
+    ClientRepository clientRepository;
     @Override
     public List<Booking> listAll() {
         List<Booking> bookings= bookingRepository.findAll();
@@ -23,17 +27,16 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking save(Booking booking) {
+    public Booking save(Booking booking, String clientName) {
+        System.out.println("---------------------------------------------------");
+        Client client = clientRepository.findByName(clientName);
+        System.out.println(client);
+        System.out.println(booking);
 
-        List<Booking> historial=bookingRepository.findByClientId(booking.getClient().getId());
-        for(Booking b: historial){
-            if(b.getLocal().getId().equals(booking.getLocal().getId()) ){
-                throw new RuntimeException("El local ya se encuentra reservado");
-            }
-        }
-
-
+        booking.setClient(client);
+        System.out.println("---------------------------------------------------");
         return bookingRepository.save(booking);
+
     }
 
     @Override

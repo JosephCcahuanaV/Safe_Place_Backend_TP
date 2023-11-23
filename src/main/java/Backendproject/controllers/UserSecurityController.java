@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 import Backendproject.security.SecurityUser;
 
+import java.util.List;
+
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -31,7 +33,8 @@ public class UserSecurityController {
     @Autowired
     UsersecurityService usersecurityService;
 
-    @PostMapping("/users")
+    //Nuevo
+    @PostMapping("/users")//create
     public ResponseEntity<UserSecurity> createUser(@RequestBody UserSecurityDTO user) {
         UserSecurity newUser = usersecurityService.register(user);
         return new ResponseEntity<UserSecurity>(newUser, HttpStatus.CREATED);
@@ -58,6 +61,15 @@ public class UserSecurityController {
                 user.getUserName());
         String jwt = jwtUtilService.generateToken(securityUser);
         Long id = securityUser.getUser().getId();
-        return new ResponseEntity<DTOToken>(new DTOToken(jwt, id), HttpStatus.OK);
+        return new ResponseEntity<DTOToken>(new DTOToken(jwt, id, user.getType()), HttpStatus.OK);
     }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserSecurity>> getAllUsers() {
+        List<UserSecurity> userSecurities = usersecurityService.listAll();
+        return new ResponseEntity<List<UserSecurity>>(userSecurities, HttpStatus.OK);
+    }
+
+
+
 }

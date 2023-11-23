@@ -23,12 +23,13 @@ public class Client {
     private String lastname;
     private String email;
     private String numberPhone;
-    private String Dni;
+    private String dni;
+
 
 
     @OneToOne
-    @JoinColumn(name = "user_Id") // viene de la tabla USER
-    private User user;
+    @JoinColumn(name = "userSecurity_Id") // viene de la tabla USER
+    private UserSecurity userSecurity;
 
     @OneToMany(mappedBy = "client") // va hacia la tabla reviews, uno a muchos
     private List<Review> reviews;

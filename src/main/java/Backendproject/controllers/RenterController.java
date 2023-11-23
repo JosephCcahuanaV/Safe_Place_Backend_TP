@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 
@@ -24,7 +24,7 @@ public class RenterController {
     RenterService renterService;
 
     @GetMapping("/renters")
-    public ResponseEntity<List<Renter>> getAllRenters() {
+    public ResponseEntity<List<Renter>> getAllRenders() {
         List<Renter> renters = renterService.listAll();
         return new ResponseEntity<List<Renter>>(renters, HttpStatus.OK);
     }
@@ -36,18 +36,18 @@ public class RenterController {
     }
 
     @PostMapping("/renters/create")
-    public ResponseEntity<Renter> createRenter(@RequestBody Renter renter) {
+    public ResponseEntity<Renter> createRender(@RequestBody Renter renter) {
         Renter newRenter = renterService.save(renter);
         return new ResponseEntity<Renter>(newRenter, HttpStatus.CREATED);
     }
     @DeleteMapping("/renters/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteRenter(@PathVariable("id") Long id) {
+    public ResponseEntity<HttpStatus> deleteRender(@PathVariable("id") Long id) {
         renterService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/renters/update/{id}")
-    public ResponseEntity<Renter> updateRenter(@RequestBody Renter renter, @PathVariable("id") Long id) {
+    public ResponseEntity<Renter> updateRender(@RequestBody Renter renter, @PathVariable("id") Long id) {
         Renter foundRenter = renterService.findById(id);
         if (renter.getName()!=null) {
             foundRenter.setName(renter.getName());
@@ -61,38 +61,22 @@ public class RenterController {
             foundRenter.setEmail(renter.getEmail());
         }
 
-        if (renter.getNumberphone()!=null) {
-            foundRenter.setNumberphone(renter.getNumberphone());
+        if (renter.getNumberPhone()!=null) {
+            foundRenter.setNumberPhone(renter.getNumberPhone());
         }
 
         if (renter.getDni()!=null) {
             foundRenter.setDni(renter.getDni());
         }
 
-        if (renter.getRuc()!=null) {
-            foundRenter.setRuc(renter.getRuc());
-        }
 
-        if (renter.getAddress()!=null) {
-            foundRenter.setAddress(renter.getAddress());
-        }
-        if (renter.getNacionality()!=null) {
-            foundRenter.setNacionality(renter.getNacionality());
-        }
 
-        if (renter.getBankAccount()!=null) {
-            foundRenter.setBankAccount(renter.getBankAccount());
-        }
 
         Renter newRenter = renterService.save(foundRenter);
         return new ResponseEntity<Renter>(newRenter, HttpStatus.OK);
     }
 
-    @GetMapping("/nationality")
-    public ResponseEntity<List<RenterDTO>> countRentersByNationality() {
-        List<RenterDTO> result = renterService.countRentersByNationality2();
-        return ResponseEntity.ok(result);
-    }
+
 
 
 }

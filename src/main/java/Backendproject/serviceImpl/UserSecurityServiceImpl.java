@@ -49,6 +49,7 @@ public class UserSecurityServiceImpl implements UsersecurityService {
             AuthorityName authorityName=AuthorityName.ROLE_CLIENT;
             if (user.getType().equals("ROLE_CLIENT")) authorityName= AuthorityName.ROLE_CLIENT;
             if (user.getType().equals("ROLE_PRINCIPAL")) authorityName= AuthorityName.ROLE_PRINCIPAL;
+            if (user.getType().equals("ROLE_RENDER")) authorityName= AuthorityName.ROLE_RENDER;
             newUser.setAuthorities(
                     List.of(
                             authorityRepository.findByName(authorityName)
@@ -78,5 +79,9 @@ public class UserSecurityServiceImpl implements UsersecurityService {
         }
     }
 
-
+    @Override
+    public List<UserSecurity> listAll() {
+        List<UserSecurity> userSecurities = userSecurityRepository.findAll();
+        return userSecurities;
+    }
 }
