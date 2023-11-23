@@ -33,7 +33,7 @@ public class UserSecurityController {
     @Autowired
     UsersecurityService usersecurityService;
 
-    //Nuevo
+    //Nuevo 2
     @PostMapping("/users")//create
     public ResponseEntity<UserSecurity> createUser(@RequestBody UserSecurityDTO user) {
         UserSecurity newUser = usersecurityService.register(user);
