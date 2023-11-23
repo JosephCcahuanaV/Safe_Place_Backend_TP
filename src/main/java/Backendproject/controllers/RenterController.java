@@ -21,6 +21,9 @@ public class RenterController {
     @GetMapping("/renters")
     public ResponseEntity<List<Renter>> getAllRenters() {
         List<Renter> renters = renterService.listAll();
+        for(Renter renter : renters) {
+            renter.setLocals(null);
+        }
         return new ResponseEntity<List<Renter>>(renters, HttpStatus.OK);
     }
 
